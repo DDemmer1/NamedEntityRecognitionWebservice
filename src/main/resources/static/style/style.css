@@ -1,0 +1,55 @@
+
+.no-js #loader {
+    display: none;
+}
+
+.js #loader {
+    display: block;
+    position: absolute;
+    left: 100px;
+    top: 0;
+}
+
+.se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url(../images/loader.gif) center no-repeat #fff;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+textarea {
+    width: 100%;
+    height: 25rem
+}
+
+nav {
+    background-color: lightslategrey;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: black;
+}
+
+footer {
+    background-color: lightslategrey;
+}

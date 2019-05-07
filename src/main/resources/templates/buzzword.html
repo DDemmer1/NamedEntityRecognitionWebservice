@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".se-pre-con").fadeOut("slow");
+
+            $("#form").submit(function () {
+                $(".se-pre-con").fadeIn("slow");
+            });
+        });
+    </script>
+
+    <meta charset="utf-8">
+    <title>Buzzword Analyser</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/style.css">
+
+</head>
+
+
+<body>
+<div class="se-pre-con"></div>
+
+
+<nav>
+    <div class="container">
+        <div><a href="/">Named Entity Recognition</a> | <a href="/buzzword">Buzzword Analyser</a> | <a href="/about">About</a></div>
+    </div>
+</nav>
+
+
+<div class="container">
+
+    <br>
+    <br>
+    <h1>Buzzword Analyser</h1>
+    <br>
+    <br>
+    <form id="form" action="/buzzword">
+        <h2 for="text">Input:</h2>
+        <br>
+        <textarea name="text" id="text" th:text="${text}"></textarea>
+
+        <br>
+        <br>
+
+
+        <label>Language Model: </label>
+        <label for="de">German</label>
+        <input type="radio" name="lg" id="de" value="de" checked>
+
+        <label for="en">English</label>
+        <input type="radio" name="lg" id="en" value="en">
+        <br>
+        <br>
+        <button class="btn btn-secondary" id="submit" type="submit">Submit</button>
+        <br>
+        <hr>
+        <br>
+
+        <h2 for="output">Top 5 Buzzwords:</h2>
+        <br>
+        <pre th:text="${output}" id="output"></pre>
+
+        <br>
+
+
+    </form>
+</div>
+
+
+<footer><a href="https://github.com/DDemmer1">© Dennis Demmer 2019</a></footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+</body>
+</html>
