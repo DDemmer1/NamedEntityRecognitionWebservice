@@ -1,4 +1,4 @@
-package de.demmer.dennis.controller;
+package de.demmer.dennis.controller.ner;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -9,6 +9,8 @@ import de.demmer.dennis.service.NamedEntityRecognitionService;
 import de.demmer.dennis.service.NamedEntityXmlBuilderService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.MissingServletRequestParameterException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,8 +28,8 @@ public class NerRestController {
     @GetMapping(value = "/api")
     public String ner(@RequestParam String text, @RequestParam String format, @RequestParam String language) {
 
-
         String out;
+
         switch (language) {
             case "de":
                 out = ner.eval(text, language);
@@ -35,11 +37,14 @@ public class NerRestController {
             case "en":
                 out = ner.eval(text, language);
                 break;
-            default:
-                out = ner.eval(text, "en");
+            case "fr":
+                out = ner.eval(text, language);
                 break;
+            default:
+                return "Language '" + language + "' not supported. Please choose between english (en), german (de) and french (fr)";
 
         }
+
 
         JsonParser parser = new JsonParser();
         JsonObject json = parser.parse(out).getAsJsonObject();
@@ -54,9 +59,9 @@ public class NerRestController {
 
         NamedEntityList entityList = gson.fromJson(out, NamedEntityList.class);
 
-        if(format.equals("json")){
+        if (format.equals("json")) {
             return prettyJson;
-        } else if(format.equals("xml")){
+        } else if (format.equals("xml")) {
             return new NamedEntityXmlBuilderService().buildXML(Arrays.asList(entityList.getEntities()), text);
         }
 
@@ -64,7 +69,23 @@ public class NerRestController {
     }
 
 
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public String handleMissingParams(MissingServletRequestParameterException ex) {
+        String name = ex.getParameterName();
+        System.out.println(name + " parameter is missing");
 
+        switch (name) {
+            case "language":
+                return name + " parameter is missing. Please choose a supported language. German (de), french (fr) or english (en)";
+            case "text":
+                return name + " parameter is missing. Please choose a text to analyse";
+            case "format":
+                return name + " parameter is missing. Please choose 'xml' or 'json'";
+            default:
+                return name + " parameter is missing.";
+        }
+
+    }
 
 
 }

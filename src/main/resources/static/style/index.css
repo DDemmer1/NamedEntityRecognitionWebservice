@@ -1,0 +1,26 @@
+h2{
+    margin-bottom: 2rem;
+}
+
+textarea#text{
+    margin-bottom: 4rem;
+}
+
+
+div#selection{
+    margin-bottom: 2rem;
+}
+
+button#submit{
+    margin-bottom: 1rem;
+}
+
+h2#output-headline{
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+pre#output{
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}

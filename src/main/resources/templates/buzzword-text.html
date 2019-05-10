@@ -2,24 +2,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="../elements/header.html"></div>
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/buzzword.css">
 </head>
 <body>
 <div class="se-pre-con"></div>
-
 <nav th:replace="../elements/nav.html"></nav>
 
 <div class="container">
-    <h1>Named Entity Recognition Online</h1>
-    <form id="form" action="/">
+    <h1>Buzzword Analyser</h1>
+
+    <form id="form" action="/buzzword/text">
         <h2>Input:</h2>
-
         <textarea name="text" id="text" th:text="${text}"></textarea>
-
-        <div class="row" id="selection">
+        <div id="selection" class="row">
             <div class="col-3">
-                <label for="language">Language Model:</label>
+                <label for="language">Language:</label>
                 <select class="form-control" id="language" name="language">
                     <option name="language" id="de" value="de" th:selected="${deSel}">German</option>
                     <option name="language" id="en" value="en" th:selected="${enSel}">English</option>
@@ -27,18 +25,17 @@
                 </select>
             </div>
             <div class="col-3">
-                <label for="format">Ouput Format:</label>
-                <select class="form-control" id="format" name="format">
-                    <option name="format" id="json" value="json" th:selected="${jsonSel}">JSON</option>
-                    <option name="format" id="xml" value="xml" th:selected="${xmlSel}">XML</option>
+                <label for="number">Number of Buzzwords:</label>
+                <select class="form-control" id="number" name="number">
+                    <option name="number" id="five" value="five" th:selected="${five}">5</option>
+                    <option name="number" id="ten" value="ten" th:selected="${ten}">10</option>
+                    <option name="number" id="all" value="all" th:selected="${all}">All</option>
                 </select>
             </div>
         </div>
-
         <button class="btn btn-secondary" id="submit" type="submit">Submit</button>
         <hr>
-        <h2 id="output-headline" for="output">Output:</h2>
-
+        <h2 id="output-headline">Buzzwords:</h2>
         <pre th:text="${output}" id="output"></pre>
     </form>
 </div>

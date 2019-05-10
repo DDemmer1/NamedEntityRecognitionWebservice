@@ -1,0 +1,21 @@
+div#links{
+    color:white;
+    background-color: lightslategrey;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-top: 3rem;
+}
+
+h4{
+    margin-bottom: 2rem;
+}
+
+#social{
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+}
+
+#rest-h2{
+    margin-bottom: 1rem;
+    margin-top:  3rem;
+}

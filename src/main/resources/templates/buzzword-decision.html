@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="../elements/header.html"></div>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+<div class="se-pre-con"></div>
+<nav th:replace="../elements/nav.html"></nav>
+
+<div class="container">
+    <h1>Buzzword Analyser</h1>
+    <p>The "Buzzword Analyser" utilises the named entity recognition functionality of this web app to analyse texts for
+        their most dominant buzzwords.
+        The output will be post processed to filter some wrong matches. If you want the unprocessed output use the <a
+                href="/">Named Entity Recognition</a>.
+        <br>
+        <br>
+        Decide if you want to upload a PDF file (max. 5mb) or input plain text to analyse.
+    </p>
+
+    <a class="btn btn-secondary" href="/buzzword/pdf">Upload PDF</a>
+    <a class="btn btn-secondary" href="/buzzword/text">Text Input</a>
+
+</div>
+
+<div th:replace="../elements/footer.html"></div>
+</body>
+</html>

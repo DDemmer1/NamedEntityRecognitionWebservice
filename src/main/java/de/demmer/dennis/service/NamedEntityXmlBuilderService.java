@@ -55,6 +55,12 @@ public class NamedEntityXmlBuilderService {
                     case ("ORG"):
                         word.setAttribute("type", "organisation");
                         break;
+                    case ("MISC"):
+                        word.setAttribute("type", "miscellaneous");
+                        break;
+                    case ("GPE"):
+                        word.setAttribute("type", "geopolitical");
+                        break;
                     default:
                         word.setAttribute("type", namedEntity.getLabel());
                         break;
@@ -81,12 +87,13 @@ public class NamedEntityXmlBuilderService {
             }
 
             //append rest of text
-            if (entityList.size()< 0 && entityList.get(entityList.size() - 1).getEnd() != text.length()) {
+            if (entityList.size()> 0 && entityList.get(entityList.size() - 1).getEnd() != text.length()) {
 
                 start = entityList.get(entityList.size() - 1).getEnd();
                 end = text.length();
 
                 String betweenWords = text.substring(start, end);
+                System.out.println(betweenWords);
 
                 String changedEncoding = new String(betweenWords.getBytes(), StandardCharsets.UTF_8);
                 Text txt = doc.createTextNode(changedEncoding);
